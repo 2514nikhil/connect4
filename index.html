@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#0a2530">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Connect 4</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2312586b'/%3E%3Ccircle cx='10' cy='10' r='5' fill='%23ff5a4e'/%3E%3Ccircle cx='22' cy='22' r='5' fill='%23ffc93c'/%3E%3Ccircle cx='22' cy='10' r='5' fill='%230a2530'/%3E%3Ccircle cx='10' cy='22' r='5' fill='%230a2530'/%3E%3C/svg%3E">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="app">
+
+  <!-- MENU -->
+  <section id="menu" class="screen active" aria-label="Game setup">
+    <div class="logo" aria-hidden="true">
+      <span class="disc p1"></span><span class="disc p2"></span><span class="disc p1"></span><span class="disc p2"></span>
+    </div>
+    <h1>Connect 4</h1>
+    <p class="sub">Get four discs in a row to win.</p>
+
+    <div class="group">
+      <span class="label" id="lblMode">Mode</span>
+      <div class="seg" data-key="mode" role="group" aria-labelledby="lblMode">
+        <button type="button" data-value="bot" aria-pressed="true">Play the bot</button>
+        <button type="button" data-value="pvp" aria-pressed="false">Pass &amp; play</button>
+      </div>
+    </div>
+
+    <div class="group bot-only">
+      <span class="label" id="lblDiff">Bot level</span>
+      <div class="seg" data-key="diff" role="group" aria-labelledby="lblDiff">
+        <button type="button" data-value="easy" aria-pressed="false">Easy</button>
+        <button type="button" data-value="medium" aria-pressed="true">Medium</button>
+        <button type="button" data-value="hard" aria-pressed="false">Hard</button>
+      </div>
+    </div>
+
+    <div class="group bot-only">
+      <span class="label" id="lblSide">You play</span>
+      <div class="seg" data-key="side" role="group" aria-labelledby="lblSide">
+        <button type="button" data-value="1" aria-pressed="true"><i class="dot p1"></i>Coral, first</button>
+        <button type="button" data-value="2" aria-pressed="false"><i class="dot p2"></i>Gold, second</button>
+      </div>
+    </div>
+
+    <button type="button" id="startBtn" class="primary">Start game</button>
+  </section>
+
+  <!-- GAME -->
+  <section id="game" class="screen" aria-label="Game">
+    <header class="topbar">
+      <button type="button" id="menuBtn" class="ghost" aria-label="Back to menu">Menu</button>
+      <div class="scores" aria-live="polite">
+        <div class="score p1" id="score1"><i class="dot p1"></i><span class="nm"></span><b>0</b></div>
+        <div class="score p2" id="score2"><i class="dot p2"></i><span class="nm"></span><b>0</b></div>
+      </div>
+    </header>
+
+    <div class="status" id="status" role="status" aria-live="polite"><i class="dot p1" id="statusDot"></i><span id="statusText"></span></div>
+
+    <div class="board-wrap">
+      <div class="slots" id="slots" aria-hidden="true"></div>
+      <div class="board" id="board" role="grid" aria-label="Connect 4 board"></div>
+    </div>
+
+    <footer class="actions">
+      <button type="button" id="undoBtn" class="ghost">Undo</button>
+      <button type="button" id="restartBtn" class="ghost">Restart</button>
+    </footer>
+
+    <div class="sheet" id="sheet" aria-hidden="true">
+      <p class="sheet-title" id="sheetTitle"></p>
+      <p class="sheet-sub" id="sheetSub"></p>
+      <div class="sheet-btns">
+        <button type="button" id="againBtn" class="primary">Play again</button>
+        <button type="button" id="sheetMenuBtn" class="ghost">Menu</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+<script src="engine.js"></script>
+<script src="game.js"></script>
+</body>
+</html>

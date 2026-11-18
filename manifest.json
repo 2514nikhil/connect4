@@ -1,0 +1,10 @@
+{
+  "name": "Connect 4",
+  "short_name": "Connect 4",
+  "start_url": "index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a2530",
+  "theme_color": "#0a2530",
+  "icons": [{ "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
