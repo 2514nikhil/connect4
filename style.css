@@ -19,7 +19,7 @@ body {
 button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulation; }
 button:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
 
-#app { height: 100%; max-width: 560px; margin: 0 auto; position: relative; }
+#app { height: 100%; height: 100dvh; max-width: 560px; margin: 0 auto; position: relative; overflow: hidden; }
 .screen {
   position: absolute; inset: 0; display: none; flex-direction: column; align-items: center;
   padding: max(18px, env(safe-area-inset-top)) 18px max(18px, env(safe-area-inset-bottom));
@@ -80,13 +80,15 @@ h1 { margin: 0; font-size: 2.6rem; letter-spacing: -.02em; font-weight: 800; }
 .status.thinking #statusText::after { content: ""; display: inline-block; width: 1.2em; text-align: left; animation: dots 1.1s steps(4, end) infinite; }
 @keyframes dots { 0% { content: ""; } 25% { content: "."; } 50% { content: ".."; } 75%, 100% { content: "..."; } }
 
-.board-wrap { width: min(100%, calc((100dvh - 290px) * 7 / 6.6), 480px); margin-top: auto; margin-bottom: auto; }
+.board-wrap { width: min(100%, calc((100dvh - 290px) * 7 / 6.6), 480px); margin-top: auto; margin-bottom: auto; flex: 0 0 auto; }
 .slots, .board { display: grid; grid-template-columns: repeat(7, 1fr); }
 .slots { padding: 0 2.6%; gap: 2.2%; margin-bottom: 6px; }
 .slot { aspect-ratio: 1; border-radius: 50%; opacity: 0; transition: opacity .1s; width: 70%; justify-self: center; }
 .slot.on { opacity: .55; }
 .board {
   background: var(--board); padding: 2.6%; gap: 2.2%; border-radius: 20px; overflow: hidden;
+  aspect-ratio: 7 / 6.03;
+  grid-template-rows: repeat(6, minmax(0, 1fr));
   box-shadow: 0 10px 0 #0c4352, 0 18px 30px rgba(0,0,0,.35);
 }
 .cell {
